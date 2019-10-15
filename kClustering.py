@@ -3,7 +3,6 @@ import random as rng
 import matplotlib.pyplot as plt
 
 
-
 def kClustering(x, y, n, iterations):
     print("Doing K clustering. Classes: %d, number of points: %d" % (n, len(x)))
     
@@ -43,20 +42,17 @@ def kClustering(x, y, n, iterations):
             centroidsX[i] = averageX
             centroidsY[i] = averageY
 
-        centroid0X = []
-        centroid0Y = []
-        centroid1X = []
-        centroid1Y = []
-        for i in range(0, len(x)):
-            if int(closestCentroid[i]) == 0:
-                centroid0X.append(x[i])
-                centroid0Y.append(y[i])
-            if int(closestCentroid[i]) == 1:
-                centroid1X.append(x[i])
-                centroid1Y.append(y[i])
+        colors = [('m'), ('b'), ('r'), ('g'), ('k'), ('y')]
+        for i in range(0, n):
+            centroid0Y = []
+            centroid0X = []
+            for j in range(0, len(x)):
+                if int(closestCentroid[j]) == i:
+                    centroid0X.append(x[j])
+                    centroid0Y.append(y[j])
+            plt.scatter(centroid0X, centroid0Y, c=colors[i])
         
-        plt.scatter(centroid0X, centroid0Y, c='b')
-        plt.scatter(centroid1X, centroid1Y, c='m')
+
         plt.scatter(centroidsX, centroidsY, marker='X')
         plt.savefig("centroids.jpg")
         plt.show()
@@ -72,4 +68,4 @@ plt.scatter(x, y)
 plt.savefig("points.jpg")
 plt.show()
 
-kClustering(x, y, 2, 10)
+kClustering(x, y, 5, 10)
