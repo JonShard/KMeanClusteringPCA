@@ -7,7 +7,7 @@ from sklearn.datasets import load_iris
 iterations = 10
 
 def kClustering(x, y, n, iterations):
-    print("Doing K clustering. Classes: %d, number of points: %d" % (n, len(x)))
+    print("\n\nDoing K clustering. Classes: %d, number of points: %d" % (n, len(x)))
     
     # Initiallize randomized centtroid points 
     centroidsX = []
@@ -51,7 +51,7 @@ def kClustering(x, y, n, iterations):
     for i in range(0, n):
         for j in range(0, len(x)):
             distanceToNearest.append(np.linalg.norm([x[j] - centroidsX[int(closestCentroid[i])],  y[j] - centroidsY[int(closestCentroid[i])]]))
-    inertia = np.sum(distanceToNearest)
+    inertia = 1 / (np.sum(distanceToNearest))
     print("Done. Inertia: ", inertia)
     return closestCentroid, inertia, centroidsX, centroidsY
 
